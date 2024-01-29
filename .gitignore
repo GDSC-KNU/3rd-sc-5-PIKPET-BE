@@ -2,9 +2,10 @@ HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
+
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+!**/src/main/java/com/gdsc/pikpet/entity/
 ### STS ###
 .apt_generated
 .classpath
@@ -23,8 +24,6 @@ bin/
 *.iml
 *.ipr
 out/
-!**/src/main/**/out/
-!**/src/main/**/entity/
 !**/src/main/**/out/
 !**/src/test/**/out/
 

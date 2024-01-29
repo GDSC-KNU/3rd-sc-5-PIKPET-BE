@@ -23,7 +23,7 @@ public class TestController {
         String imageName = "good.jpg"; // 업로드할 이미지 파일 이름
 
         // 서비스 계정 키 파일 경로
-        String jsonPath = "/Users/dbswodyd00/Desktop/github/3rd-sc-ex5-pikpet-Backend/src/main/resources/soc.json";
+        String jsonPath = "";
         GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream(jsonPath));
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         // StorageOptions 생성 (인증 정보 설정 필요)
@@ -31,7 +31,7 @@ public class TestController {
         blob.downloadTo(Paths.get("TestImage"));
 
 
-        // test시 resource 필드에 이미지 필요
+        // test시 resource 필드에 이미지+json 필요
         BlobInfo blobInfo =storage.create(
                 BlobInfo.newBuilder("solution-challenge-bucket", "springTest.png")
                         .setContentType("png")

@@ -21,6 +21,9 @@ public class UserAccount {
     @Setter private String job;
     @Setter @Enumerated(EnumType.STRING) private UserRole userRole;
 
+    @Setter @ManyToOne @JoinColumn(name = "shelter_id")
+    private Shelter shelter;
+
     protected UserAccount(){};
 
     private UserAccount(String email,String password,String phoneNumber,Gender gender,int age,String address,String job, UserRole userRole){

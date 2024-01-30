@@ -32,8 +32,8 @@ jobs:
 
       # 배포용 yml 파일 생성
       - name: make application.yml
-        if: |
-          contains(github.ref, 'main')
+#        if: |
+#          contains(github.ref, 'main')
         run: |
           cd ./src/main/resources   
           touch ./application.yml #application.yml 생성
@@ -50,7 +50,7 @@ jobs:
 
       # docker build & push to production
       - name: Docker build & push to prod
-        if: contains(github.ref, 'main')
+#        if: contains(github.ref, 'main')
         run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t ${{ secrets.DOCKER_USERNAME }}/sc5-spring .
@@ -63,4 +63,4 @@ jobs:
           host: ${{ secrets.HOST }} # EC2 퍼블릭 IPv4 DNS
           username: ${{ secrets.USER }} #ip 주소로 변경
           script: |
-            docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sc5-spring
+            docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sc5-spring:latest

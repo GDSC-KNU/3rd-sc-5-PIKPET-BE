@@ -12,7 +12,7 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Setter private String email;
+    @Setter @Column(unique = true) private String email;
     @Setter @Column(length = 100, nullable = false) private String password;
     @Setter private String phoneNumber;
     @Setter private Gender gender;
@@ -39,6 +39,9 @@ public class UserAccount {
 
     public static UserAccount of(String email,String password){
         return new UserAccount(email,password,null,null,0,null,null,UserRole.USER);
+    }
+    public static UserAccount of(String email, String password, String phoneNumber, Gender gender,int age, String address,String job,UserRole userRole){
+        return new UserAccount(email,password,phoneNumber,gender,age,address,job,userRole);
     }
 
 }

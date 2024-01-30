@@ -63,4 +63,4 @@ jobs:
           host: ${{ secrets.HOST }} # EC2 퍼블릭 IPv4 DNS
           username: ${{ secrets.USER }} #ip 주소로 변경
           script: |
-            docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sc5-spring:latest
+            sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_USERNAME }}/sc5-spring:latest

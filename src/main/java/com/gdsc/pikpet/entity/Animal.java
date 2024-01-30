@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,5 +33,6 @@ public class Animal {
     private LocalDateTime captureDate;
 
     @Setter private LocalDateTime enthanasiaDate;
-    @Setter private String color;
+
+    @Setter @ElementCollection(fetch = FetchType.LAZY,targetClass = String.class) private List<String> color;
 }

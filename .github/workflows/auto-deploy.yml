@@ -1,7 +1,7 @@
 name: CI/CD using github actions & docker
 
 on:
-  pull_request:
+  push:
 #    branches: [ "main" ]
 
 jobs:

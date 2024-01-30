@@ -11,6 +11,9 @@ import java.nio.file.Paths;
 
 @RestController
 public class TestController {
+    // Google Cloud Storage 버킷 이름
+    @Value("${application.bucket.name}") 
+    private String bucketName;
 
     @GetMapping("/")
     public String test() {
@@ -19,7 +22,6 @@ public class TestController {
 
     @GetMapping("/testImage")
     public String testImage() throws IOException {
-        String bucketName = "solution-challenge-bucket"; // Google Cloud Storage 버킷 이름
         String imageName = "good.jpg"; // 업로드할 이미지 파일 이름
 
         // 서비스 계정 키 파일 경로

@@ -13,7 +13,7 @@ import java.util.Map;
 @Entity
 @Getter
 public class Application {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false, name = "application_id")
     private int id;
 
     @Setter @ManyToOne @JoinColumn(name = "user_id")

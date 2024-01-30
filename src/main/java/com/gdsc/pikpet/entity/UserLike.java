@@ -8,6 +8,7 @@ import lombok.Setter;
 @Getter
 public class UserLike {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "user_like_id")
     private int id;
 
     @Setter @ManyToOne @JoinColumn(name = "user_account_id")

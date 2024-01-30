@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 public class Animal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false, name = "animal_id")
     private int id;
 
     @Setter private String imageUrl;

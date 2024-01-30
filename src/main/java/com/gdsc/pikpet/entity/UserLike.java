@@ -13,6 +13,6 @@ public class UserLike {
     @Setter @ManyToOne @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 
-    @Setter @ManyToOne @JoinColumn(name = "animalId")
+    @Setter @ManyToOne @JoinColumn(name = "animal_id")
     private Animal animal;
 }

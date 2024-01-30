@@ -10,7 +10,7 @@ public class UserLike {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Setter @ManyToOne @JoinColumn(name = "userId")
+    @Setter @ManyToOne @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 
     @Setter @ManyToOne @JoinColumn(name = "animalId")

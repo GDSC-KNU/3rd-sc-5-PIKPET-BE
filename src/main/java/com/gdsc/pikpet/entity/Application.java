@@ -16,10 +16,10 @@ public class Application {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false)
     private int id;
 
-    @Setter @ManyToOne @JoinColumn(name = "userId")
+    @Setter @ManyToOne @JoinColumn(name = "user_id")
     private UserAccount userAccount;
 
-    @Setter @ManyToOne @JoinColumn(name = "animalId")
+    @Setter @ManyToOne @JoinColumn(name = "animal_id")
     private Animal animal;
 
     @CreatedDate @Column(nullable = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

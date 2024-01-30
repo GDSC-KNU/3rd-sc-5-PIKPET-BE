@@ -14,7 +14,7 @@ public class SearchHistory {
     @Id @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private int id;
 
-    @Setter @ManyToOne @JoinColumn(name = "userId")
+    @Setter @ManyToOne @JoinColumn(name = "user_id")
     private UserAccount userAccount;
 
     @Setter private String imageUrl;

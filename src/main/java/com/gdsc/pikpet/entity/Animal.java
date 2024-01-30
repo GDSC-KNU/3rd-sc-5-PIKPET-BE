@@ -23,7 +23,7 @@ public class Animal {
     @Setter @Enumerated(EnumType.STRING) private AnimalSize size;
     @Setter private String disease;
 
-    @Setter @ManyToOne @JoinColumn(name = "shelterId") private Shelter shelter;
+    @Setter @ManyToOne @JoinColumn(name = "shelter_id") private Shelter shelter;
     @Setter private boolean isNeutralized;
     @Setter private boolean checkUp;
 

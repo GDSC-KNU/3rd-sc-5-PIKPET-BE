@@ -10,7 +10,7 @@ public class Description {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Setter @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = "animalId")
+    @Setter @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = "animal_id")
     private Animal animal;
     @Setter private String content;
     @Setter private String name;

@@ -7,9 +7,9 @@ import lombok.Setter;
 @Entity
 @Getter
 public class Shelter {
-    @Column(nullable = false)
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int shelterId;
+    @Column(nullable = false, name = "shelter_id")
+    private int id;
 
     @Setter private double latitude;
     @Setter private double longitude;

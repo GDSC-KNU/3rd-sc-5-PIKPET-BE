@@ -1,5 +1,6 @@
 package com.gdsc.pikpet.controller;
 
+import com.google.api.client.util.Value;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import java.nio.file.Paths;
 @RestController
 public class TestController {
     // Google Cloud Storage 버킷 이름
-    @Value("${application.bucket.name}") 
+    @Value("${application.bucket.name}")
     private String bucketName;
 
     @GetMapping("/")

@@ -39,7 +39,7 @@ public class SecurityConfig {
                                     response.sendRedirect("/loginPage/loginFail");
                                 })
         );
-
+http.cors();
         return http.build();
     }
 

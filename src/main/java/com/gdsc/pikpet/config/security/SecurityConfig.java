@@ -24,6 +24,7 @@ public class SecurityConfig {
                                 .requestMatchers("/login/**").authenticated()
                                 .anyRequest().authenticated()
         );
+
         http.csrf(cr -> cr.disable());
 
         http.formLogin(
@@ -32,7 +33,7 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/login")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
-                                .defaultSuccessUrl("/loginPage/loginSuccess")// user 같이 정보 반환, 프런트 연결시 변경 필요
+                                .defaultSuccessUrl("/loginPage/loginSuccess",true)// user 같이 정보 반환, 프런트 연결시 변경 필요
                                 .failureHandler((request, response, exception) -> {
                                     System.out.println("exception = " + exception.getMessage());
                                     response.sendRedirect("/loginPage/loginFail");

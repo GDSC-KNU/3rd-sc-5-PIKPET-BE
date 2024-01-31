@@ -11,15 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserDetailService implements UserDetailsService {
     private final UserAccountRepository userAccountRepository;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public UserDetailService(UserAccountRepository userAccountRepository,PasswordEncoder passwordEncoder){
-        this.userAccountRepository = userAccountRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username){

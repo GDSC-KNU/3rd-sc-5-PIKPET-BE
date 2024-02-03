@@ -10,7 +10,7 @@ jobs:
 
     steps:
       #Runner에 git checkout
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       #Runner에 자바17 환경 세팅
       - name: Set up JDK 17

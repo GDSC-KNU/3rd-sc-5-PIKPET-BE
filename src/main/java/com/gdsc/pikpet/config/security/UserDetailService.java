@@ -1,6 +1,7 @@
 package com.gdsc.pikpet.config.security;
 
 import com.gdsc.pikpet.repository.UserAccountRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

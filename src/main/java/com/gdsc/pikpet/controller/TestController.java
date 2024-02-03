@@ -1,7 +1,6 @@
 package com.gdsc.pikpet.controller;
 
 //import com.gdsc.pikpet.config.StorageConfig;
-
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class TestController {
+
     private final Storage storage;
 
     @Value("${gcs.bucket.name}")

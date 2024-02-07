@@ -13,7 +13,7 @@ import java.util.List;
 public class Animal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "animal_id")
-    private int id;
+    private Long id;
 
     @Setter private String imageUrl;
     @Setter @Enumerated(EnumType.STRING) private AnimalType animalType;
@@ -29,7 +29,7 @@ public class Animal {
     @Setter private boolean isNeutralized;
     @Setter private boolean checkUp;
 
-    @Setter @CreatedDate @Column(nullable = false)
+    @Setter
     private LocalDateTime captureDate;
 
     @Setter private LocalDateTime enthanasiaDate;

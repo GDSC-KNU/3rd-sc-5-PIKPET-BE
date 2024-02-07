@@ -14,7 +14,7 @@ import java.util.Map;
 @Getter
 public class Application {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(nullable = false, name = "application_id")
-    private int id;
+    private Long id;
 
     @Setter @ManyToOne @JoinColumn(name = "user_id")
     private UserAccount userAccount;

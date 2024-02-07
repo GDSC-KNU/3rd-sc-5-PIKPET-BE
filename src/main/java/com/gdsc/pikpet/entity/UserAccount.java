@@ -10,7 +10,7 @@ public class UserAccount {
 
     @Id @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Setter @Column(unique = true) private String email;
     @Setter @Column(length = 100, nullable = false) private String password;

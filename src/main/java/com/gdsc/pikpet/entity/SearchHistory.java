@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class SearchHistory {
     @Id @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     @Column(nullable = false, name = "search_history_id")
-    private int id;
+    private Long id;
 
     @Setter @ManyToOne @JoinColumn(name = "user_id")
     private UserAccount userAccount;

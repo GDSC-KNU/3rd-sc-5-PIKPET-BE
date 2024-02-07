@@ -36,4 +36,9 @@ public class UserAccountController {
         userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
         return ResponseEntity.ok().body("관심동물 설정 완료");
     }
+
+    @GetMapping("/likeAnimal")
+    public ResponseEntity<?> getLikeAnimal(Authentication authentication) {
+        return ResponseEntity.ok().body(userAccountService.getLikeAnimal((UserSecurityDto) authentication.getPrincipal()));
+    }
 }

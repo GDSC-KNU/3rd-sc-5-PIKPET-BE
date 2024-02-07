@@ -2,6 +2,7 @@ package com.gdsc.pikpet.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -16,4 +17,14 @@ public class UserLike {
 
     @Setter @ManyToOne @JoinColumn(name = "animal_id")
     private Animal animal;
+
+    private UserLike(UserAccount userAccount, Animal animal){
+        this.userAccount = userAccount;
+        this.animal = animal;
+    }
+    private UserLike(){};
+
+    public static UserLike of(UserAccount userAccount, Animal animal){
+        return new UserLike(userAccount,animal);
+    }
 }

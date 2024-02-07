@@ -41,4 +41,18 @@ public class UserAccountController {
     public ResponseEntity<?> getLikeAnimal(Authentication authentication) {
         return ResponseEntity.ok().body(userAccountService.getLikeAnimal((UserSecurityDto) authentication.getPrincipal()));
     }
+
+    @GetMapping("/application/{animalId}")
+    public ResponseEntity<?> getApplication(Authentication authentication, @PathVariable Long animalId  ) {
+        return ResponseEntity.ok().body(userAccountService.getApplication((UserSecurityDto) authentication.getPrincipal(), animalId));
+    }
+    @GetMapping("/application")
+    public ResponseEntity<?> getApplications(Authentication authentication) {
+        return ResponseEntity.ok().body(userAccountService.getApplications((UserSecurityDto) authentication.getPrincipal()));
+    }
+    @PostMapping("/application")
+    public ResponseEntity<?> postApplication(Authentication authentication, @RequestParam Long animalId, @RequestBody String content) {
+        userAccountService.createApplication((UserSecurityDto) authentication.getPrincipal(), animalId, content );
+        return ResponseEntity.ok().body("신청 완료");
+    }
 }

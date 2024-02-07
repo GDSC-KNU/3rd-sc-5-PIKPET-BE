@@ -12,6 +12,8 @@ import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserAccountService {
@@ -32,5 +34,10 @@ public class UserAccountService {
         UserAccount userAccount = userAccountRepository.findByEmail(userSecurityDto.email()).orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다 - email: " + userSecurityDto.email()));
         Animal animal = animalRepository.findById(animalId).orElseThrow(() -> new IllegalArgumentException("동물을 찾을 수 없습니다 - id: " + animalId));
         likeRepository.save(UserLike.of(userAccount, animal));
+    }
+
+    public List<UserLike> getLikeAnimal(UserSecurityDto userSecurityDto) {
+        UserAccount userAccount = userAccountRepository.findByEmail(userSecurityDto.email()).orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다 - email: " + userSecurityDto.email()));
+        return likeRepository.findAllByUserAccount(userAccount);
     }
 }

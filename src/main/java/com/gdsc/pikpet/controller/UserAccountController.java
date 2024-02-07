@@ -30,4 +30,10 @@ public class UserAccountController {
         // TODO: 유저 변경이 제대로 되었는지 검사하는 로직이 필요할 수 있음.
         return ResponseEntity.ok().body("업데이트 완료");
     }
+
+    @PostMapping("/likeAnimal")
+    public ResponseEntity<?> likeAnimal(Authentication authentication, @RequestParam Long animalId) {
+        userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
+        return ResponseEntity.ok().body("관심동물 설정 완료");
+    }
 }

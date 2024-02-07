@@ -2,6 +2,7 @@ package com.gdsc.pikpet.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -21,6 +22,8 @@ public class UserLike {
         this.userAccount = userAccount;
         this.animal = animal;
     }
+    private UserLike(){};
+
     public static UserLike of(UserAccount userAccount, Animal animal){
         return new UserLike(userAccount,animal);
     }

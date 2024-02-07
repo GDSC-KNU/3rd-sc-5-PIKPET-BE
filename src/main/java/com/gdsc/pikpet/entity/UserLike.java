@@ -16,4 +16,12 @@ public class UserLike {
 
     @Setter @ManyToOne @JoinColumn(name = "animal_id")
     private Animal animal;
+
+    private UserLike(UserAccount userAccount, Animal animal){
+        this.userAccount = userAccount;
+        this.animal = animal;
+    }
+    public static UserLike of(UserAccount userAccount, Animal animal){
+        return new UserLike(userAccount,animal);
+    }
 }

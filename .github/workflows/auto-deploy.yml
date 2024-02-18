@@ -48,7 +48,7 @@ jobs:
         run: |
           ./gradlew build -x test
           touch ./build/libs/soc.json
-          cp "${{ secrets.GCS_KEY }}" ./build/libs/soc.json
+          echo "${{ secrets.GCS_KEY }}" > ./build/libs/soc.json
 
       # docker build & push to production
       - name: Docker build & push to prod

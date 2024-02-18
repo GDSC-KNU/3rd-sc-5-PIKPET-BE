@@ -47,7 +47,7 @@ jobs:
       - name: Build with Gradle
         run: |
           ./gradlew build -x test
-          cp "${{ secrets.GCS_KEY }}" build/libs/soc.json
+          cp "${{ secrets.GCS_KEY }}" ./build/libs/soc.json
 
       # docker build & push to production
       - name: Docker build & push to prod

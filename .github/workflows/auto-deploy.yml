@@ -2,7 +2,7 @@ name: CI/CD using github actions & docker
 
 on:
   push:
-    branches: [ "main" ]
+#    branches: [ "main" ]
 
 jobs:
   auto-deploy:
@@ -30,24 +30,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      # 배포용 yml 파일, gcs_key(json) 생성
+      # 배포용 yml 파일 생성
       - name: make application.yml
         run: |
           mkdir ./src/main/resources # resources 폴더 생성
           cd ./src/main/resources   
           touch ./application.yml #application.yml 생성
-          touch ./soc.json 
           echo "${{ secrets.YML }}" > ./application.yml # github actions에서 설정한 값을 application.yml 파일에 쓰기
-          echo "${{ secrets.GCS_KEY }}" > ./soc.json
         shell: bash
 
       # gradlew 권한 설정
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      # gradle build
+      # gradle build & soc.json 위치 이동
       - name: Build with Gradle
-        run: ./gradlew build -x test
+        run: |
+          ./gradlew build -x test
+          cp "${{ secrets.GCS_KEY }}" build/libs/soc.json
 
       # docker build & push to production
       - name: Docker build & push to prod

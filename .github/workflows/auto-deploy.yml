@@ -43,13 +43,18 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
+      #json타입 키 값 생성 (github actions는 json타입을 secret에 저장할 시 ""를 제외시킴. 따라서 다시 JSON타입으로 만들어야 함)
+      - name: create-json
+        id: create-json
+        uses: jsdaniell/create-json@1.1.2
+        with:
+          name: "soc.json"
+          json: ${{ secrets.SECERT_JSON }}
+
       # gradle build & soc.json 위치 이동
       - name: Build with Gradle
         run: |
           ./gradlew build -x test
-          touch ./build/libs/soc.json
-          echo "${{ secrets.GCS_KEY }}"
-          echo "${{ secrets.GCS_KEY }}" > ./build/libs/soc.json
 
       # docker build & push to production
       - name: Docker build & push to prod

@@ -34,7 +34,7 @@ public class SecurityConfig {
         http.formLogin(
                 formLogin ->
                         formLogin.loginPage("/loginPage/formLogin")
-                                .loginProcessingUrl("/login")
+                                .loginProcessingUrl("/loginPage/login")
                                 .usernameParameter("username")
                                 .passwordParameter("password")
                                 .defaultSuccessUrl("/loginPage/loginSuccess",true)// user 같이 정보 반환, 프런트 연결시 변경 필요

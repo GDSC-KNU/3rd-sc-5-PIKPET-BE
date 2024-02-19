@@ -23,7 +23,7 @@ public class GeminiService {
     private String GEMINI_API_KEY;
 
     private final RestTemplate restTemplate;
-    public Dog imageTOCategory(String image) {
+    public GeminiFilter imageTOCategory(String image) {
 
         String url =  "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key="+GEMINI_API_KEY;
 
@@ -36,12 +36,7 @@ public class GeminiService {
                 List.of(
                         new GeminiRequest.Content(
                                 List.of(
-                                        new GeminiRequest.TextPart("사진의 동물의 종이 무엇인지, 품종은 무엇인지, 크기는 어떤지, 어떤 색상인지 저장할 수 있는 text 파일로 줘.예시는 다음과 같아 {\n" +
-                                                "\t\"종\": \"강아지\",\n" +
-                                                "\t\"품종\": \"보더콜리\",\n" +
-                                                "\t\"크기\": \"대형견\",\n" +
-                                                "\t\"색상\": [\"검정\",\"흰색\"]\n" +
-                                                "}\""),
+                                        new GeminiRequest.TextPart("Please provide the species, breed, size, and color of the animal in the picture in JSON format. For species, it should be either dog or cat. For breed, choose one from the following: BEAGLE, BICHON_FRISE, BORDER_COLLIE, BOSTON_TERRIER, BULLDOG, CHIHUAHUA, COCKER_SPANIEL, DACHSHUND, GOLDEN_RETRIEVER, JAPANESE_SPITZ, JINDO, LABRADOR_RETRIEVER, MALTESE, PAPILLON, POMERANIAN, POODLE, POONGSAN, PUG, SAMOYED, SCHNAUZER, SHIBA_INU, SHITZU, SIBERIAN_HUSKY, WELSH_CORGI, YORKSHIRE_TERRIER, DALMATIAN, GERMAN_SHEPHERD, ROTTWEILER. Size should be one of the following: MINIATURE, SMALL, MEDIUM, LARGE, EXTRA_LARGE. An example is as follows: {\"species\":\"DOG\",\"breed\":\"DALMATIAN\",\"size\":\"LARGE\",\"color\": [\"black\",\"white\"]}"),
                                         new GeminiRequest.InlineDataPart(new GeminiRequest.InlineDataPart.InlineData("image/jpeg", image))
                                 )
 
@@ -51,19 +46,20 @@ public class GeminiService {
         HttpEntity<GeminiRequest> request = new HttpEntity<>(body, headers);
         GeminiResponse geminiResponse = restTemplate.postForObject(url, request, GeminiResponse.class);
         System.out.println(geminiResponse.candidates().get(0).content().parts().get(0).text());
-          Dog dog = new Gson().fromJson(geminiResponse.candidates().get(0).content().parts().get(0).text(), Dog.class);
-          return dog;
+          GeminiFilter geminiFilter = new Gson().fromJson(geminiResponse.candidates().get(0).content().parts().get(0).text(), GeminiFilter.class);
+          return geminiFilter;
     }
 
     @Getter
     @Setter
-    public static class Dog {
-        String 종;
-        String 품종;
-        String 크기;
-        List<String> 색상;
+    public static class GeminiFilter {
+        String species;
+        String breed;
+        String size;
+        List<String> color;
 
         // getters and setters
     }
 
 }
+

@@ -35,6 +35,5 @@ public class Animal {
 
     @Setter private LocalDateTime enthanasiaDate;
 
-    @Setter @ElementCollection(fetch = FetchType.LAZY,targetClass = String.class) private List<String> color;
-
+    @Setter @ElementCollection(fetch = FetchType.LAZY,targetClass = Color.class) private List<Color> color;
 }

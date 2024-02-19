@@ -43,6 +43,6 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
             Pageable pageable
     );
 
-    @Query("select animal from Animal animal order by (ST_Distance_Sphere(ST_MakePoint(animal.shelter.latitude,animal.shelter.location), ST_MakePoint(?1, ?2)))")
-    Page<Animal> findByLocation(double lat, double lon, Pageable pageable);
+    @Query("select animal from Animal animal join fetch animal.shelter order by (ST_Distance_Sphere(Point(animal.shelter.longitude,animal.shelter.latitude), Point(:lon, :lat)))")
+    Page<Animal> findByLocation(@Param("lat") double lat, @Param("lon") double lon, Pageable pageable);
 }

@@ -2,6 +2,8 @@ package com.gdsc.pikpet.controller;
 
 //import com.gdsc.pikpet.config.StorageConfig;
 import com.gdsc.pikpet.dto.request.GeminiRequest;
+import com.gdsc.pikpet.entity.animal.Animal;
+import com.gdsc.pikpet.repository.AnimalRepository;
 import com.gdsc.pikpet.service.GeminiService;
 import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobInfo;
@@ -14,6 +16,9 @@ import java.util.Base64;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,6 +28,7 @@ public class TestController {
 
     private final Storage storage;
     private final GeminiService geminiService;
+    private final AnimalRepository animalRepository;
 
     @Value("${gcs.bucket.name}")
     private String bucketName;
@@ -53,4 +59,8 @@ public class TestController {
         return geminiService.imageTOCategory(Base64.getEncoder().encodeToString(fileContent));
     }
 
+    @GetMapping("/test3")
+    public Page<Animal> test3(@RequestParam double lat, @RequestParam double lon, @PageableDefault Pageable pageable) {
+        return animalRepository.findByLocation(lat, lon,pageable);
+    }
 }

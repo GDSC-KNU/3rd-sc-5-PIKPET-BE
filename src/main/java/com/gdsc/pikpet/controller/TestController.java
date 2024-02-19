@@ -48,7 +48,7 @@ public class TestController {
         return "이미지 다운로드 완료: " + blob.getName();
     }
     @PostMapping("/test2")
-    public GeminiService.Dog test2(@RequestParam MultipartFile file) throws IOException {
+    public GeminiService.GeminiFilter test2(@RequestParam MultipartFile file) throws IOException {
         byte[] fileContent = file.getBytes();
         return geminiService.imageTOCategory(Base64.getEncoder().encodeToString(fileContent));
     }

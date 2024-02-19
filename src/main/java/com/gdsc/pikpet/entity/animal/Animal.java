@@ -1,9 +1,10 @@
-package com.gdsc.pikpet.entity;
+package com.gdsc.pikpet.entity.animal;
 
+import com.gdsc.pikpet.entity.Gender;
+import com.gdsc.pikpet.entity.Shelter;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +22,7 @@ public class Animal {
     @Setter private int age;
     @Setter @Enumerated(EnumType.STRING) private Gender gender;
 
-    @Setter private String species;
+    @Setter @Enumerated(EnumType.STRING) private Species species;
     @Setter @Enumerated(EnumType.STRING) private AnimalSize size;
     @Setter private String disease;
 
@@ -35,4 +36,5 @@ public class Animal {
     @Setter private LocalDateTime enthanasiaDate;
 
     @Setter @ElementCollection(fetch = FetchType.LAZY,targetClass = String.class) private List<String> color;
+
 }

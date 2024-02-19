@@ -1,8 +1,8 @@
 package com.gdsc.pikpet.entity;
 
+import com.gdsc.pikpet.entity.animal.Animal;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity

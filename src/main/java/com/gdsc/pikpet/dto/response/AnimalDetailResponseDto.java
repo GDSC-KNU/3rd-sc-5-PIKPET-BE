@@ -2,6 +2,9 @@ package com.gdsc.pikpet.dto.response;
 
 import com.gdsc.pikpet.entity.*;
 
+import com.gdsc.pikpet.entity.animal.Animal;
+import com.gdsc.pikpet.entity.animal.AnimalSize;
+import com.gdsc.pikpet.entity.animal.AnimalType;
 import java.time.LocalDateTime;
 import java.util.List;
 

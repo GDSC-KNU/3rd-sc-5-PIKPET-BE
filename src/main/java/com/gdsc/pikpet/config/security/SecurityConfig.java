@@ -29,7 +29,7 @@ public class SecurityConfig {
                                 .requestMatchers("/loginPage/loginFail").permitAll()
                                 .requestMatchers("/loginPage/login").permitAll()
                                 .requestMatchers("/api/**").permitAll() //구현의 편의를 위해 임시 개방
-                                .requestMatchers("/login/**").authenticated()
+                                .requestMatchers("/login/**").permitAll()
                                 .anyRequest().authenticated()
         );
 

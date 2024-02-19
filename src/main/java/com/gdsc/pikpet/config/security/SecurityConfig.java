@@ -27,6 +27,7 @@ public class SecurityConfig {
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/loginPage/formLogin").permitAll()
                                 .requestMatchers("/loginPage/loginFail").permitAll()
+                                .requestMatchers("/loginPage/login").permitAll()
                                 .requestMatchers("/api/**").permitAll() //구현의 편의를 위해 임시 개방
                                 .requestMatchers("/login/**").authenticated()
                                 .anyRequest().authenticated()

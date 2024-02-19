@@ -17,12 +17,12 @@ public class Animal {
     private Long id;
 
     @Setter private String imageUrl;
-    @Setter @Enumerated(EnumType.STRING) private AnimalType animalType;
+    @Setter @Enumerated(EnumType.STRING) private Species species;
 
     @Setter private int age;
     @Setter @Enumerated(EnumType.STRING) private Gender gender;
 
-    @Setter @Enumerated(EnumType.STRING) private Species species;
+    @Setter @Enumerated(EnumType.STRING) private Breed breed;
     @Setter @Enumerated(EnumType.STRING) private AnimalSize size;
     @Setter private String disease;
 

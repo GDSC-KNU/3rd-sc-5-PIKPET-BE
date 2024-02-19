@@ -3,6 +3,7 @@ package com.gdsc.pikpet.entity.animal;
 import com.gdsc.pikpet.entity.Gender;
 import com.gdsc.pikpet.entity.Shelter;
 import jakarta.persistence.*;
+import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,5 +36,5 @@ public class Animal {
 
     @Setter private LocalDateTime enthanasiaDate;
 
-    @Setter @ElementCollection(fetch = FetchType.LAZY,targetClass = Color.class) private List<Color> color;
+    @Setter @OneToMany(mappedBy = "animal") List<AnimalColor> animalColors = new ArrayList<>();
 }

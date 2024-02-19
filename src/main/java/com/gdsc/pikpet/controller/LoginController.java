@@ -14,7 +14,6 @@ import java.security.Principal;
 
 
 @RestController
-@CrossOrigin(origins="*")
 @RequestMapping("/loginPage")
 public class LoginController {
     @RequestMapping("/loginSuccess")

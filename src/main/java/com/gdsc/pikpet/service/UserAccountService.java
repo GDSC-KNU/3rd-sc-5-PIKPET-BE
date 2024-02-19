@@ -10,7 +10,6 @@ import com.gdsc.pikpet.repository.ApplicationRepository;
 import com.gdsc.pikpet.repository.LikeRepository;
 import com.gdsc.pikpet.repository.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,7 +64,7 @@ public class UserAccountService {
         return applicationRepository.findAllByUserAccount(userAccount);
     }
 
-    private UserAccount getUserAccount(UserSecurityDto userSecurityDto) {
+    public UserAccount getUserAccount(UserSecurityDto userSecurityDto) {
         return userAccountRepository.findByEmail(userSecurityDto.email()).orElseThrow(() -> new IllegalArgumentException("유저를 찾을 수 없습니다 - email: " + userSecurityDto.email()));
     }
 }

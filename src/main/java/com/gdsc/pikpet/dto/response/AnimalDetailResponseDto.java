@@ -4,6 +4,7 @@ import com.gdsc.pikpet.entity.*;
 
 import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.animal.AnimalSize;
+import com.gdsc.pikpet.entity.animal.Color;
 import com.gdsc.pikpet.entity.animal.Species;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,7 +22,7 @@ public record AnimalDetailResponseDto(
         boolean checkUp,
         LocalDateTime captureDate,
         LocalDateTime enthanasiaDate,
-        List<String> color
+        List<Color> color
 ) {
     public static AnimalDetailResponseDto from(Animal animal) {
         return new AnimalDetailResponseDto(

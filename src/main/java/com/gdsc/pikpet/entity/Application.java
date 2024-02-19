@@ -1,14 +1,13 @@
 package com.gdsc.pikpet.entity;
 
+import com.gdsc.pikpet.entity.animal.Animal;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Entity
 @Getter

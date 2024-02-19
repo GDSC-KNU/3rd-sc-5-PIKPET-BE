@@ -2,13 +2,16 @@ package com.gdsc.pikpet.dto.response;
 
 import com.gdsc.pikpet.entity.*;
 
+import com.gdsc.pikpet.entity.animal.Animal;
+import com.gdsc.pikpet.entity.animal.AnimalSize;
+import com.gdsc.pikpet.entity.animal.Species;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public record AnimalDetailResponseDto(
         Long id,
         String imageUrl,
-        AnimalType animalType,
+        Species species,
         Gender gender,
         AnimalSize size,
         String deasease,
@@ -24,7 +27,7 @@ public record AnimalDetailResponseDto(
         return new AnimalDetailResponseDto(
                 animal.getId(),
                 animal.getImageUrl(),
-                animal.getAnimalType(),
+                animal.getSpecies(),
                 animal.getGender(),
                 animal.getSize(),
                 animal.getDisease(),

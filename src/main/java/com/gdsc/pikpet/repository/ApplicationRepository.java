@@ -1,6 +1,6 @@
 package com.gdsc.pikpet.repository;
 
-import com.gdsc.pikpet.entity.Animal;
+import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.Application;
 import com.gdsc.pikpet.entity.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;

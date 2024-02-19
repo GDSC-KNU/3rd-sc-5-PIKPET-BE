@@ -1,7 +1,7 @@
 package com.gdsc.pikpet.service;
 
 import com.gdsc.pikpet.config.security.UserSecurityDto;
-import com.gdsc.pikpet.entity.Animal;
+import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.Application;
 import com.gdsc.pikpet.entity.UserAccount;
 import com.gdsc.pikpet.entity.UserLike;

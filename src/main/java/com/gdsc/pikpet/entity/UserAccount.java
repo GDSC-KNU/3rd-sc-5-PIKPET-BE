@@ -10,7 +10,7 @@ public class UserAccount {
 
     @Id @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Setter @Column(unique = true) private String email;
     @Setter @Column(length = 100, nullable = false) private String password;
@@ -36,7 +36,16 @@ public class UserAccount {
         this.job = job;
         this.userRole = userRole;
     }
-
+    public void update(UserAccount userAccount){
+        this.email = userAccount.getEmail();
+        this.password = userAccount.getPassword();
+        this.phoneNumber = userAccount.getPhoneNumber();
+        this.gender = userAccount.getGender();
+        this.age = userAccount.getAge();
+        this.address = userAccount.getAddress();
+        this.job = userAccount.getJob();
+        this.userRole = userAccount.getUserRole();
+    }
     public static UserAccount of(String email,String password){
         return new UserAccount(email,password,null,null,0,null,null,UserRole.USER);
     }

@@ -9,7 +9,7 @@ import lombok.Setter;
 public class Description {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "description_id")
-    private int id;
+    private Long id;
 
     @Setter @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinColumn(name = "animal_id")
     private Animal animal;

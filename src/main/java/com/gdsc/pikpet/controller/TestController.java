@@ -3,6 +3,7 @@ package com.gdsc.pikpet.controller;
 import com.google.api.client.util.Value;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 @RestController
+@CrossOrigin(origins="*")
 public class TestController {
     // Google Cloud Storage 버킷 이름
     @Value("${application.bucket.name}")

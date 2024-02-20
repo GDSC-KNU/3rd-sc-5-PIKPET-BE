@@ -45,7 +45,7 @@ public class SecurityConfig {
                                                 (request, response, authentication) -> {
                                                     response.setStatus(HttpServletResponse.SC_OK);
                                                     response.setContentType("application/json");
-                                                    response.getWriter().print("{\"success\": true, \"message\": \"Login successful.\"}");
+                                                    response.getWriter().print("{\"success\": true, \"message\": \"Login successful.\", \"data\": {\"username\": \"" + authentication.getName() + "\"}}");
                                                     response.getWriter().flush();
                                                 }
                                         )

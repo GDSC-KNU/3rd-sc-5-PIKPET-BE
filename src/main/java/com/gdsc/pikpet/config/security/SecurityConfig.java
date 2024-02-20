@@ -44,7 +44,7 @@ public class SecurityConfig {
                                         .successHandler(
                                                 (request, response, authentication) -> {
                                                     response.setStatus(HttpServletResponse.SC_OK);
-                                                    response.setHeader("Set-Cookie", "JSESSIONID=" + request.getSession().getId() + "; Path=/; HttpOnly");
+                                                    response.setHeader("Set-Cookie", "JSESSIONID=" + request.getSession().getId() + "; Path=/; HttpOnly; SameSite=None;");
                                                     response.getWriter().print("{\"success\": true, \"message\": \"Login successful.\", \"data\": {\"username\": \"" + authentication.getName() + "\"}}");
                                                     response.getWriter().flush();
                                                 }

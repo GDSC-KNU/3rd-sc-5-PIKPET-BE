@@ -1,5 +1,6 @@
 package com.gdsc.pikpet.config.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,7 +41,14 @@ public class SecurityConfig {
                                         .loginProcessingUrl("/login")
                                         .usernameParameter("username")
                                         .passwordParameter("password")
-                                        .defaultSuccessUrl("/loginPage/loginSuccess", true)// user 같이 정보 반환, 프런트 연결시 변경 필요
+                                        .successHandler(
+                                                (request, response, authentication) -> {
+                                                    response.setStatus(HttpServletResponse.SC_OK);
+                                                    response.setContentType("application/json");
+                                                    response.getWriter().print("{\"success\": true, \"message\": \"Login successful.\"}");
+                                                    response.getWriter().flush();
+                                                }
+                                        )
                                         .failureHandler((request, response, exception) -> {
                                             System.out.println("exception = " + exception.getMessage());
                                             response.sendRedirect("/loginPage/loginFail");

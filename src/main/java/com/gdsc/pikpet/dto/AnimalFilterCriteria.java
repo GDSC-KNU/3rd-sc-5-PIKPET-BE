@@ -8,7 +8,6 @@ import com.gdsc.pikpet.entity.animal.Breed;
 import java.util.List;
 
 public record AnimalFilterCriteria(
-
         List<Species> species,
         List<Breed> breeds,
         Integer minAge,
@@ -16,6 +15,8 @@ public record AnimalFilterCriteria(
         List<Gender> gender,
         List<AnimalSize> animalSize,
         Boolean neutralized,
+        Double lon,
+        Double lat,
         Integer page,
         List<Color> colors
 ) {

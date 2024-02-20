@@ -44,6 +44,8 @@ public class AnimalService {
                 animalFilterCriteria.animalSize(),
                 animalFilterCriteria.neutralized(),
                 animalFilterCriteria.colors(),
+                animalFilterCriteria.lon(),
+                animalFilterCriteria.lat(),
                 pageable
         );
 

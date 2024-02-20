@@ -32,22 +32,20 @@ public class SecurityConfig {
                                 .requestMatchers("/login/**").permitAll()
                                 .anyRequest().authenticated()
         );
-
-        http.csrf(cr -> cr.disable());
-        http.
-                cors(cors -> cors.configurationSource(corsConfigurationSource()))
-        .formLogin(
-                formLogin ->
-                        formLogin.loginPage("/loginPage/formLogin")
-                                .loginProcessingUrl("/login")
-                                .usernameParameter("username")
-                                .passwordParameter("password")
-                                .defaultSuccessUrl("/loginPage/loginSuccess",true)// user 같이 정보 반환, 프런트 연결시 변경 필요
-                                .failureHandler((request, response, exception) -> {
-                                    System.out.println("exception = " + exception.getMessage());
-                                    response.sendRedirect("/loginPage/loginFail");
-                                })
-        );
+        http.csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .formLogin(
+                        formLogin ->
+                                formLogin.loginPage("/loginPage/formLogin")
+                                        .loginProcessingUrl("/login")
+                                        .usernameParameter("username")
+                                        .passwordParameter("password")
+                                        .defaultSuccessUrl("/loginPage/loginSuccess", true)// user 같이 정보 반환, 프런트 연결시 변경 필요
+                                        .failureHandler((request, response, exception) -> {
+                                            System.out.println("exception = " + exception.getMessage());
+                                            response.sendRedirect("/loginPage/loginFail");
+                                        })
+                );
         return http.build();
     }
 

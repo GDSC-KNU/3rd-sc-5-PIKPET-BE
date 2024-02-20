@@ -19,8 +19,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface AnimalRepository extends JpaRepository<Animal, Long> {
-    @Query("SELECT a FROM Animal a WHERE " +
+public interface AnimalRepository extends JpaRepository<Animal, Long>{
+    @Query("SELECT a FROM Animal a join fetch a.shelter WHERE " +
             "(:species is null or a.species in :species) " +
             "and (:breeds is null or a.breed in :breeds) " +
             "and (:minAge is null or a.age >= :minAge) " +
@@ -30,8 +30,12 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
             "and (:neutralized is null or a.isNeutralized = :neutralized)" +
             "and a.id IN ( SELECT DISTINCT a.id " +
                 "FROM Animal a JOIN a.animalColors ac " +
-                "WHERE (:colors is null or ac.color IN :colors))")
-    Page<Animal> findAnimalsWithFilter(
+                "WHERE (:colors is null or ac.color IN :colors))" +
+            "order by case when :lat is not null and :lon is not null then " +
+            "ST_Distance_Sphere(Point(a.shelter.longitude,a.shelter.latitude), Point(:lon, :lat)) " +
+            "else a.id end")
+
+    Page<Animal> findAnimalsWithFilter (
             @Param("species") List<Species> species,
             @Param("breeds") List<Breed> breeds,
             @Param("minAge") Integer minAge,
@@ -40,6 +44,8 @@ public interface AnimalRepository extends JpaRepository<Animal, Long> {
             @Param("animalSize") List<AnimalSize> animalSize,
             @Param("neutralized") Boolean neutralized,
             @Param("colors") List<Color> colors,
+            @Param("lon") Double lon,
+            @Param("lat") Double lat,
             Pageable pageable
     );
 

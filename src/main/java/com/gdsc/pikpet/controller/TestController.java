@@ -57,11 +57,11 @@ public class TestController {
         // 업로드 성공 시 메시지 반환
         return "이미지 다운로드 완료: " + blob.getName();
     }
-    @PostMapping("/test2")
-    public GeminiService.GeminiFilter test2(@RequestParam MultipartFile file) throws IOException {
-        byte[] fileContent = file.getBytes();
-        return geminiService.imageTOCategory(Base64.getEncoder().encodeToString(fileContent));
-    }
+//    @PostMapping("/test2")
+//    public GeminiService.GeminiFilter test2(@RequestParam MultipartFile file) throws IOException {
+//        byte[] fileContent = file.getBytes();
+//        return geminiService.imageTOCategory(Base64.getEncoder().encodeToString(fileContent));
+//    }
 
     @GetMapping("/test3")
     public Page<Animal> test3(@RequestParam double lat, @RequestParam double lon, @PageableDefault Pageable pageable) {

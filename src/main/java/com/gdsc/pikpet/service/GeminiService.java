@@ -1,5 +1,6 @@
 package com.gdsc.pikpet.service;
 
+import com.gdsc.pikpet.dto.GeminiFilter;
 import com.gdsc.pikpet.dto.request.GeminiRequest;
 import com.gdsc.pikpet.dto.response.GeminiResponse;
 import com.google.gson.Gson;
@@ -36,7 +37,7 @@ public class GeminiService {
                 List.of(
                         new GeminiRequest.Content(
                                 List.of(
-                                        new GeminiRequest.TextPart("Please provide the species, breed, size, and color of the animal in the picture. For species, it should be either dog or cat. For breed, choose one from the following: BEAGLE, BICHON_FRISE, BORDER_COLLIE, BOSTON_TERRIER, BULLDOG, CHIHUAHUA, COCKER_SPANIEL, DACHSHUND, GOLDEN_RETRIEVER, JAPANESE_SPITZ, JINDO, LABRADOR_RETRIEVER, MALTESE, PAPILLON, POMERANIAN, POODLE, POONGSAN, PUG, SAMOYED, SCHNAUZER, SHIBA_INU, SHITZU, SIBERIAN_HUSKY, WELSH_CORGI, YORKSHIRE_TERRIER, DALMATIAN, GERMAN_SHEPHERD, ROTTWEILER. Size should be one of the following: MINIATURE, SMALL, MEDIUM, LARGE, EXTRA_LARGE. An example is as follows: {\"species\":\"DOG\",\"breed\":\"DALMATIAN\",\"size\":\"LARGE\",\"color\": [\"black\",\"white\"]}"),
+                                        new GeminiRequest.TextPart("Please provide the species, breed, size, and color of the animal in the picture. For species, it should be either dog or cat. For breed, choose one from the following: BEAGLE, BICHON_FRISE, BORDER_COLLIE, BOSTON_TERRIER, BULLDOG, CHIHUAHUA, COCKER_SPANIEL, DACHSHUND, GOLDEN_RETRIEVER, JAPANESE_SPITZ, JINDO, LABRADOR_RETRIEVER, MALTESE, PAPILLON, POMERANIAN, POODLE, POONGSAN, PUG, SAMOYED, SCHNAUZER, SHIBA_INU, SHITZU, SIBERIAN_HUSKY, WELSH_CORGI, YORKSHIRE_TERRIER, DALMATIAN, GERMAN_SHEPHERD, ROTTWEILER. Size should be one of the following: MINIATURE, SMALL, MEDIUM, LARGE, EXTRA_LARGE. For color, choose multiple from the following:  BLACK, WHITE, BROWN, GRAY, YELLOW, ORANGE, RED, BLUE, GREEN, PURPLE, PINK, SILVER, GOLD. An example is as follows: {\"species\":\"DOG\",\"breed\":\"DALMATIAN\",\"size\":\"LARGE\",\"color\": [\"BLACK\",\"WHITE\"]}"),
                                         new GeminiRequest.InlineDataPart(new GeminiRequest.InlineDataPart.InlineData("image/jpeg", image))
                                 )
 
@@ -46,20 +47,11 @@ public class GeminiService {
         HttpEntity<GeminiRequest> request = new HttpEntity<>(body, headers);
         GeminiResponse geminiResponse = restTemplate.postForObject(url, request, GeminiResponse.class);
         System.out.println(geminiResponse.candidates().get(0).content().parts().get(0).text());
-          GeminiFilter geminiFilter = new Gson().fromJson(geminiResponse.candidates().get(0).content().parts().get(0).text(), GeminiFilter.class);
-          return geminiFilter;
+        GeminiFilter geminiFilter = new Gson().fromJson(geminiResponse.candidates().get(0).content().parts().get(0).text(), GeminiFilter.class);
+        return geminiFilter;
     }
 
-    @Getter
-    @Setter
-    public static class GeminiFilter {
-        String species;
-        String breed;
-        String size;
-        List<String> color;
 
-        // getters and setters
-    }
 
 }
 

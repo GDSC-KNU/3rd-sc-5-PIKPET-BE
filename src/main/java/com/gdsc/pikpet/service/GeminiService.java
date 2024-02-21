@@ -23,7 +23,7 @@ public class GeminiService {
     private String GEMINI_API_KEY;
 
     private final RestTemplate restTemplate;
-    public GeminiFilter imageTOCategory(String image) {
+    public GeminiFilter imageToCategory(String image) {
 
         String url =  "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key="+GEMINI_API_KEY;
 

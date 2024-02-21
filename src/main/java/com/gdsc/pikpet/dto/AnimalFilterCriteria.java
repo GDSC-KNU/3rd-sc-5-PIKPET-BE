@@ -30,7 +30,7 @@ public record AnimalFilterCriteria(
                 null,
                 null,
                 null,
-                List.of(geminiFilter.size()),
+                 null,
                 null,
                 null,
                 null,

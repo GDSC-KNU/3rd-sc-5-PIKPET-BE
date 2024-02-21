@@ -26,6 +26,7 @@ public class SecurityConfig {
                 authorizeHttpRequests ->
                         authorizeHttpRequests
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                                .requestMatchers("/swagger-ui/**", "/v3/api-docs/", "/swagger-ui.html").permitAll()
                                 .requestMatchers("/loginPage/formLogin").permitAll()
                                 .requestMatchers("/loginPage/loginFail").permitAll()
                                 .requestMatchers("/loginPage/login").permitAll()

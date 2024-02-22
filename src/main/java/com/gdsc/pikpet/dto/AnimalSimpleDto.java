@@ -10,7 +10,8 @@ public record AnimalSimpleDto(
         Breed breed,
         int age,
         Gender gender,
-        boolean isLiked
+        boolean isLiked,
+        String branchName
 ) {
     public static AnimalSimpleDto from(Animal animal, boolean isLiked){
         return new AnimalSimpleDto(
@@ -19,7 +20,8 @@ public record AnimalSimpleDto(
                 animal.getBreed(),
                 animal.getAge(),
                 animal.getGender(),
-                isLiked
+                isLiked,
+                animal.getShelter().getBranchName()
         );
     }
 }

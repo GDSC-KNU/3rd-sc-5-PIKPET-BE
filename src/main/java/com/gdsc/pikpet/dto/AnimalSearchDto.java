@@ -4,6 +4,7 @@ import java.util.List;
 
 public record AnimalSearchDto(
     List<AnimalSimpleDto> animals,
-    Integer page
+    Integer page,
+    int numberOfElements
 ) {
 }

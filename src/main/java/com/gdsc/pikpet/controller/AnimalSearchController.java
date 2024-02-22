@@ -39,6 +39,8 @@ public class AnimalSearchController {
     @PostMapping("/image")
     public ResponseEntity<AnimalSearchDto> getAnimalsByImage(
             Authentication authentication,
+            @RequestParam Double lon,
+            @RequestParam Double lat,
             @RequestParam MultipartFile file
     ) throws IOException {
         //TODO: 예외처리
@@ -47,7 +49,7 @@ public class AnimalSearchController {
                 .imageToCategory(Base64.getEncoder().encodeToString(fileContent));
 
         //GeminiFilter -> AnimalFilterCriteria로 변환
-        AnimalFilterCriteria animalFilterCriteria = AnimalFilterCriteria.from(geminiFilter);
+        AnimalFilterCriteria animalFilterCriteria = AnimalFilterCriteria.from(geminiFilter, lon, lat);
         AnimalSearchDto animals = animalService.getAnimals(animalFilterCriteria, (UserSecurityDto) authentication.getPrincipal());
         log.info("geminifilter: {}", geminiFilter);
         return ResponseEntity.ok(animals);

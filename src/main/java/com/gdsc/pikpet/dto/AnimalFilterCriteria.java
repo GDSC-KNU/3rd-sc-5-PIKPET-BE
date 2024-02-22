@@ -23,7 +23,7 @@ public record AnimalFilterCriteria(
         Integer page,
         List<Color> colors
 ) {
-    public static AnimalFilterCriteria from(GeminiFilter geminiFilter) {
+    public static AnimalFilterCriteria from(GeminiFilter geminiFilter, Double lon, Double lat) {
         AnimalFilterCriteria animalFilterCriteria = new AnimalFilterCriteria(
                 List.of(geminiFilter.species()),
                 List.of(geminiFilter.breed()),
@@ -32,8 +32,8 @@ public record AnimalFilterCriteria(
                 null,
                  null,
                 null,
-                null,
-                null,
+                lon,
+                lat,
                 0,
                 null //TODO: color 코드로 변경
         );

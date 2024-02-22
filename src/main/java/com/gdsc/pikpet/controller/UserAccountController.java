@@ -33,8 +33,8 @@ public class UserAccountController {
 
     @PostMapping("/likeAnimal")
     public ResponseEntity<?> likeAnimal(Authentication authentication, @RequestParam Long animalId) {
-        userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
-        return ResponseEntity.ok().body("관심동물 설정 완료");
+        String stateMessage = userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
+        return ResponseEntity.ok().body(stateMessage);
     }
 
     @GetMapping("/likeAnimal")

@@ -2,6 +2,7 @@ package com.gdsc.pikpet.controller;
 
 
 import com.gdsc.pikpet.config.security.UserSecurityDto;
+import com.gdsc.pikpet.dto.UserLikeResponse;
 import com.gdsc.pikpet.service.UserAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,11 +33,15 @@ public class UserAccountController {
     }
 
     @PostMapping("/likeAnimal")
-    public ResponseEntity<?> likeAnimal(Authentication authentication, @RequestParam Long animalId) {
-        String stateMessage = userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
-        return ResponseEntity.ok().body(stateMessage);
+    public ResponseEntity<UserLikeResponse> likeAnimal(
+            Authentication authentication,
+            @RequestParam Long animalId
+    ) {
+        UserLikeResponse userLikeResponse = userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
+        return ResponseEntity.ok().body(userLikeResponse);
     }
 
+    //TODO: fixMe: 좋아하는 "동물" 조회하도록 변경해야함
     @GetMapping("/likeAnimal")
     public ResponseEntity<?> getLikeAnimal(Authentication authentication) {
         return ResponseEntity.ok().body(userAccountService.getLikeAnimal((UserSecurityDto) authentication.getPrincipal()));

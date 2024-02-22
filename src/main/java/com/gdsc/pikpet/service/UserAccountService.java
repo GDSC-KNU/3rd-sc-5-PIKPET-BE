@@ -1,6 +1,7 @@
 package com.gdsc.pikpet.service;
 
 import com.gdsc.pikpet.config.security.UserSecurityDto;
+import com.gdsc.pikpet.dto.UserLikeResponse;
 import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.Application;
 import com.gdsc.pikpet.entity.UserAccount;
@@ -33,16 +34,16 @@ public class UserAccountService {
     }
 
     @Transactional
-    public String addlikeAnimal(UserSecurityDto userSecurityDto, Long animalId) {
+    public UserLikeResponse addlikeAnimal(UserSecurityDto userSecurityDto, Long animalId) {
         UserAccount userAccount = getUserAccount(userSecurityDto);
         Animal animal = animalRepository.findById(animalId).orElseThrow(() -> new IllegalArgumentException("동물을 찾을 수 없습니다 - id: " + animalId));
         Optional<UserLike> existedUserLike = likeRepository.findByUserAccountAndAnimal(userAccount, animal);
         if (existedUserLike.isPresent()) {
             likeRepository.delete(existedUserLike.get());
-            return "관심동물 삭제 완료";
+            return new UserLikeResponse(false,"관심동물 삭제 완료");
         }
         likeRepository.save(UserLike.of(userAccount, animal));
-        return "관심동물 설정 완료";
+        return new UserLikeResponse(true,"관심동물 설정 완료");
     }
 
     @Transactional(readOnly = true)

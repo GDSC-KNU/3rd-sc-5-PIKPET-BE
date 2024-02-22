@@ -9,6 +9,7 @@ import com.gdsc.pikpet.repository.AnimalRepository;
 import com.gdsc.pikpet.repository.ApplicationRepository;
 import com.gdsc.pikpet.repository.LikeRepository;
 import com.gdsc.pikpet.repository.UserAccountRepository;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,10 +33,16 @@ public class UserAccountService {
     }
 
     @Transactional
-    public void addlikeAnimal(UserSecurityDto userSecurityDto, Long animalId) {
+    public String addlikeAnimal(UserSecurityDto userSecurityDto, Long animalId) {
         UserAccount userAccount = getUserAccount(userSecurityDto);
         Animal animal = animalRepository.findById(animalId).orElseThrow(() -> new IllegalArgumentException("동물을 찾을 수 없습니다 - id: " + animalId));
+        Optional<UserLike> existedUserLike = likeRepository.findByUserAccountAndAnimal(userAccount, animal);
+        if (existedUserLike.isPresent()) {
+            likeRepository.delete(existedUserLike.get());
+            return "관심동물 삭제 완료";
+        }
         likeRepository.save(UserLike.of(userAccount, animal));
+        return "관심동물 설정 완료";
     }
 
     @Transactional(readOnly = true)

@@ -7,6 +7,11 @@ import lombok.Setter;
 
 @Entity
 @Getter
+@Table(name = "user_like", uniqueConstraints = {
+        @UniqueConstraint(
+                columnNames = {"user_account_id", "animal_id"}
+        )
+})
 public class UserLike {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, name = "user_like_id")

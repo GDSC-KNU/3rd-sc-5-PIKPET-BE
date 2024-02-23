@@ -6,10 +6,12 @@ import com.gdsc.pikpet.dto.AnimalFilterCriteria;
 import com.gdsc.pikpet.dto.AnimalSimpleDto;
 import com.gdsc.pikpet.dto.response.AnimalDetailResponseDto;
 import com.gdsc.pikpet.entity.UserAccount;
+import com.gdsc.pikpet.entity.UserLike;
 import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.repository.AnimalRepository;
 import com.gdsc.pikpet.repository.LikeRepository;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,9 +25,14 @@ public class AnimalService {
     private final AnimalRepository animalRepository;
     private final LikeRepository likeRepository;
     private final int PAGE_SIZE = 10;
-    public AnimalDetailResponseDto getAnimalDetail(Long animalId) {
+    public AnimalDetailResponseDto getAnimalDetail(UserSecurityDto userSecurityDto, Long animalId) {
+        UserAccount userAccount = userAccountService.getUserAccount(userSecurityDto);
+        Optional<Animal> animal = animalRepository.findById(animalId);
+        if (!animal.isPresent()) throw new IllegalArgumentException("존재하지 않는 동물입니다");
+        boolean isLiked = isLikedByUser(userAccount, animal.get());
+
         return animalRepository.findById(animalId)
-                .map(AnimalDetailResponseDto::from)
+                .map((Animal a) -> AnimalDetailResponseDto.from(a, isLiked))
                 .orElseThrow(() -> new IllegalArgumentException("해당하는 동물을 찾을 수 없습니다 - animalId: " + animalId));
     }
 

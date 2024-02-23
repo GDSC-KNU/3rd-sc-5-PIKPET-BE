@@ -5,6 +5,7 @@ import com.gdsc.pikpet.entity.*;
 import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.animal.AnimalSize;
 import com.gdsc.pikpet.entity.animal.AnimalColor;
+import com.gdsc.pikpet.entity.animal.Breed;
 import com.gdsc.pikpet.entity.animal.Color;
 import com.gdsc.pikpet.entity.animal.Species;
 import java.time.LocalDateTime;
@@ -16,16 +17,19 @@ public record AnimalDetailResponseDto(
         Species species,
         Gender gender,
         AnimalSize size,
-        String deasease,
+        String disease,
         // Shelter를 노출시키는 것이 좋을지에 대한 고민이 필요함. ShelterId만 노출시키는 것이 좋을 수 있음
         Shelter shelter,
         boolean isNeutralized,
         boolean checkUp,
         LocalDateTime captureDate,
-        LocalDateTime enthanasiaDate,
-        List<Color> color
+        LocalDateTime euthanasiaDate,
+        List<Color> colors,
+        Integer age,
+        Breed breed,
+        Boolean isLiked
 ) {
-    public static AnimalDetailResponseDto from(Animal animal) {
+    public static AnimalDetailResponseDto from(Animal animal, Boolean isLiked) {
         return new AnimalDetailResponseDto(
                 animal.getId(),
                 animal.getImageUrl(),
@@ -40,7 +44,10 @@ public record AnimalDetailResponseDto(
                 animal.getEnthanasiaDate(),
                 animal.getAnimalColors().stream()
                         .map(AnimalColor::getColor)
-                .toList()
+                .toList(),
+                animal.getAge(),
+                animal.getBreed(),
+                isLiked
         );
     }
 }

@@ -56,6 +56,7 @@ public class AnimalService {
                 pageable
         );
         int numberOfElements = animals.getNumberOfElements();
+        int totalElements = (int) animals.getTotalElements();
         UserAccount userAccount = userAccountService.getUserAccount(userSecurityDto);
         List<AnimalSimpleDto> animalSimpleDtos = animals.getContent().stream()
                 .map(animal -> {
@@ -64,7 +65,7 @@ public class AnimalService {
                 })
                 .toList();
 
-        AnimalSearchDto response = new AnimalSearchDto(animalSimpleDtos, animalFilterCriteria.page(), numberOfElements);
+        AnimalSearchDto response = new AnimalSearchDto(animalSimpleDtos, animalFilterCriteria.page(), numberOfElements, totalElements);
         return response;
     }
 

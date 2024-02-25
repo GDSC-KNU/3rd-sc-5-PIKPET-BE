@@ -50,4 +50,25 @@ public record AnimalDetailResponseDto(
                 isLiked
         );
     }
+    public static AnimalDetailResponseDto from(UserLike userLike) {
+        return new AnimalDetailResponseDto(
+                userLike.getAnimal().getId(),
+                userLike.getAnimal().getImageUrl(),
+                userLike.getAnimal().getSpecies(),
+                userLike.getAnimal().getGender(),
+                userLike.getAnimal().getSize(),
+                userLike.getAnimal().getDisease(),
+                userLike.getAnimal().getShelter(),
+                userLike.getAnimal().isNeutralized(),
+                userLike.getAnimal().isCheckUp(),
+                userLike.getAnimal().getCaptureDate(),
+                userLike.getAnimal().getEnthanasiaDate(),
+                userLike.getAnimal().getAnimalColors().stream()
+                        .map(AnimalColor::getColor)
+                        .toList(),
+                userLike.getAnimal().getAge(),
+                userLike.getAnimal().getBreed(),
+                true
+        );
+    }
 }

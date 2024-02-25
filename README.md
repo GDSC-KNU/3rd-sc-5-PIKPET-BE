@@ -40,6 +40,10 @@ Google Cloud Platforms
 3. Create a file called .env on the path to 3rd-sc-5-PIKPET-FE
 4. run `npm install`
 5. run `npm run dev`
+6. Access localhost:5173
+7. Login test user (id: test@test, pw: test)
+
+
 
 
 ### Backend

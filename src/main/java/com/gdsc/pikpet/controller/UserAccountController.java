@@ -35,10 +35,10 @@ public class UserAccountController {
         return ResponseEntity.ok().body("업데이트 완료");
     }
 
-    @PostMapping("/likeAnimal")
+    @PostMapping("/likeAnimal/{animalId}")
     public ResponseEntity<UserLikeResponse> likeAnimal(
             Authentication authentication,
-            @RequestParam Long animalId
+            @PathVariable Long animalId
     ) {
         UserLikeResponse userLikeResponse = userAccountService.addlikeAnimal((UserSecurityDto) authentication.getPrincipal(), animalId);
         return ResponseEntity.ok().body(userLikeResponse);

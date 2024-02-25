@@ -35,5 +35,12 @@ Google Cloud Platforms
 
 ## 4. How to run
 ### Frontend
+1. node.js (버전 적어주세요)version install
+2. run `git clone https://github.com/GDSC-KNU/3rd-sc-5-PIKPET-FE`
+3. Create a file called .env on the path to 3rd-sc-5-PIKPET-FE
+4. run `npm install`
+5. run `npm run dev`
+
 
 ### Backend
+It is currently on the server. When running a frontend project, it is connected to a backend server.

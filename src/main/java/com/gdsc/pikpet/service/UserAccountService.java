@@ -2,6 +2,7 @@ package com.gdsc.pikpet.service;
 
 import com.gdsc.pikpet.config.security.UserSecurityDto;
 import com.gdsc.pikpet.dto.UserLikeResponse;
+import com.gdsc.pikpet.dto.response.AnimalDetailResponseDto;
 import com.gdsc.pikpet.entity.animal.Animal;
 import com.gdsc.pikpet.entity.Application;
 import com.gdsc.pikpet.entity.UserAccount;
@@ -47,9 +48,9 @@ public class UserAccountService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserLike> getLikeAnimal(UserSecurityDto userSecurityDto) {
+    public List<AnimalDetailResponseDto> getLikeAnimal(UserSecurityDto userSecurityDto) {
         UserAccount userAccount = getUserAccount(userSecurityDto);
-        return likeRepository.findAllByUserAccount(userAccount);
+        return likeRepository.findAllByUserAccount(userAccount).stream().map(AnimalDetailResponseDto::from).toList();
     }
 
     @Transactional

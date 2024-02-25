@@ -3,6 +3,7 @@ package com.gdsc.pikpet.controller;
 
 import com.gdsc.pikpet.config.security.UserSecurityDto;
 import com.gdsc.pikpet.dto.UserLikeResponse;
+import com.gdsc.pikpet.dto.response.AnimalDetailResponseDto;
 import com.gdsc.pikpet.service.UserAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/userInfo")
@@ -44,7 +47,8 @@ public class UserAccountController {
     //TODO: fixMe: 좋아하는 "동물" 조회하도록 변경해야함
     @GetMapping("/likeAnimal")
     public ResponseEntity<?> getLikeAnimal(Authentication authentication) {
-        return ResponseEntity.ok().body(userAccountService.getLikeAnimal((UserSecurityDto) authentication.getPrincipal()));
+        List<AnimalDetailResponseDto> likeAnimals = userAccountService.getLikeAnimal((UserSecurityDto) authentication.getPrincipal());
+        return ResponseEntity.ok().body(likeAnimals);
     }
 
     @GetMapping("/application/{animalId}")
